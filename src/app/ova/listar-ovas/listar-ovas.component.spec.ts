@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ListarOvasComponent } from './listar-ovas.component';
 
 describe('ListarOvasComponent', () => {
@@ -8,9 +7,9 @@ describe('ListarOvasComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ListarOvasComponent]
+      imports: [ListarOvasComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ListarOvasComponent);
     component = fixture.componentInstance;

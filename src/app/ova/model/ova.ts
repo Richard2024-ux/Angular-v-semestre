@@ -8,10 +8,4 @@ export class Ova {
   public intensidad: number;
   public semestre: string;
 
-  constructor(id: number, nombre: string, intensidad: number, semestre: string) {
-    this.id = id;
-    this.nombre = nombre;
-    this.intensidad = intensidad;
-    this.semestre = semestre;
-  }
 }

@@ -1,83 +1,78 @@
-import {Component, OnInit} from '@angular/core';
-import {Ova} from "../model/ova";
-import {OvaService} from "../service/ova.service";
-import Swal from "sweetalert2";
-import {ActivatedRoute, Router} from "@angular/router";
-
+import { Component } from '@angular/core';
+import { Ova } from '../model/ova';
+import { OvaService } from '../service/ova.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listar-ovas',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './listar-ovas.component.html',
   styleUrls: ['./listar-ovas.component.css']
 })
-export class ListarOvasComponent implements OnInit {
-  public ovas: Array<Ova> = [];
-  public nombreOva!: string;
-  public ovaSelected!: Ova;
-  public selected: boolean = false;
+export class ListarOvasComponent {
 
-  constructor(private ovaService: OvaService, private routerPath: Router, private router: ActivatedRoute) {
-    this.ovaService.getOvas().subscribe(
-      (ovas: Array<Ova>) => {
-        this.ovas = ovas;
-      }
-    );
-  }
+  ovas: Ova[];
 
+  constructor(private ovaService: OvaService, private router: Router) { }
 
-  /**
-   * Metodo que se ejecuta al iniciar el componente
-   */
   ngOnInit(): void {
-    // this.ovas[0] = {id: 1, ova: 'Angular', programa: 'Ingenieria de sistemas'};
-    // this.ovas[1] = {id: 2, ova: 'Java', programa: 'Ingenieria de sistemas'};
-    // this.ovas[2] = {id: 3, ova: 'Python', programa: 'Ingenieria de sistemas'};
-    // this.ovas[3] = {id: 4, ova: 'C#', programa: 'Ingenieria de sistemas'};
-    // this.ovas[4] = {id: 5, ova: 'C++', programa: 'Ingenieria de sistemas'};
+    this.obtenerOvas();
   }
 
   /**
-   * Evento que se dispara al seleccionar un ova en la lista
-   * @param ova Ova seleccionado
+   * Método para redirigir al formulario de edición de un OVA.
+   * @param id - ID del OVA a editar.
    */
-  onSelected(ova: Ova) {
-    this.ovaSelected = ova;
-    this.selected=true;
-    // console.log(this.ovaSelected); //Imprime en la consola del navegador el ova seleccionado
-    this.routerPath.navigate(['/editar/' + this.ovaSelected.id]); //Redirecciona a la ruta /editar/:id
+  editarOva(id: number) {
+    this.router.navigate(['editar-ova', id]);
   }
 
   /**
-   * Metodo que elimina un ova seleccionado de la lista
-   * @param ova Ova a eliminar
+   * Método para obtener la lista de OVAs desde el servicio.
    */
-  borrarOva(ova: Ova) {
+  private obtenerOvas() {
+    this.ovaService.obtenerListaDeOvas().subscribe(dato => {
+      this.ovas = dato;
+    });
+  }
+
+  /**
+   * Método para eliminar un OVA y actualizar la lista.
+   * @param id - ID del OVA a eliminar.
+   */
+  eliminarOva(id: number) {
     Swal.fire({
-      title: "Esta seguro?",
-      text: "Usted no puede revertir esto!",
-      icon: "warning",
+      title: '¿Estás seguro?',
+      text: "Confirma si deseas eliminar este OVA",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Si, borra el ova!"
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, elimínalo',
+      cancelButtonText: 'No, cancelar',
+      buttonsStyling: true
     }).then((result) => {
       if (result.isConfirmed) {
-        this.ovaService.borrarOva(ova.id).subscribe(() => { // Llama al servicio para eliminar el ova
-          Swal.fire({
-            title: "Eliminado!",
-            text: "El ova ha sido eliminado.",
-            icon: "success"
-          });
-          this.ovas = this.ovas.filter((o) => o !== ova); // Actualiza la lista de ovas en la vista
+        this.ovaService.eliminarOva(id).subscribe(() => {
+          this.obtenerOvas();
+          Swal.fire(
+            'Eliminado',
+            'El OVA ha sido eliminado con éxito',
+            'success'
+          );
         });
       }
     });
   }
 
   /**
-   * Metodo que redirecciona a la ruta /crear
+   * Método para mostrar los detalles de un OVA.
+   * @param id - ID del OVA a mostrar.
    */
-  crearOva() {
-    this.routerPath.navigate(['/crear']);
+  verDetallesDelOva(id: number) {
+    this.router.navigate(['detalle-ova', id]);
   }
 }
