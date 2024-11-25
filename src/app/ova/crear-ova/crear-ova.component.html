@@ -17,8 +17,7 @@
         </div>
         <div class="card-body">
           <form (ngSubmit)="onSubmit()" #ovaForm="ngForm">
-
-            <!-- Campo ID -->
+            <!-- Campos del formulario -->
             <div class="form-group">
               <label for="id">ID: </label>
               <input
@@ -31,12 +30,7 @@
                 placeholder="Digite el ID"
                 #id="ngModel"
               />
-              <div class="alert alert-danger" *ngIf="id.invalid && (id.dirty || id.touched)">
-                <div *ngIf="id.errors?.['required']">Digite el ID por favor.</div>
-              </div>
             </div>
-
-            <!-- Campo Nombre -->
             <div class="form-group">
               <label for="nombre">Nombre: </label>
               <input
@@ -51,14 +45,7 @@
                 placeholder="Digite el nombre del OVA"
                 #nombre="ngModel"
               />
-              <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
-                <div *ngIf="nombre.errors?.['required']">Digite el nombre por favor.</div>
-                <div *ngIf="nombre.errors?.['minlength']">El nombre debe contener al menos 4 caracteres.</div>
-                <div *ngIf="nombre.errors?.['maxlength']">El nombre no debe exceder los 50 caracteres.</div>
-              </div>
             </div>
-
-            <!-- Campo Intensidad -->
             <div class="form-group">
               <label for="intensidad">Intensidad: </label>
               <input
@@ -72,13 +59,7 @@
                 placeholder="Digite la intensidad"
                 #intensidad="ngModel"
               />
-              <div class="alert alert-danger" *ngIf="intensidad.invalid && (intensidad.dirty || intensidad.touched)">
-                <div *ngIf="intensidad.errors?.['required']">Digite la intensidad por favor.</div>
-                <div *ngIf="intensidad.errors?.['min']">La intensidad debe ser al menos 1.</div>
-              </div>
             </div>
-
-            <!-- Campo Semestre -->
             <div class="form-group">
               <label for="semestre">Semestre: </label>
               <input
@@ -93,13 +74,7 @@
                 placeholder="Digite el semestre"
                 #semestre="ngModel"
               />
-              <div class="alert alert-danger" *ngIf="semestre.invalid && (semestre.dirty || semestre.touched)">
-                <div *ngIf="semestre.errors?.['required']">Digite el semestre por favor.</div>
-                <div *ngIf="semestre.errors?.['min']">El semestre debe ser al menos 1.</div>
-                <div *ngIf="semestre.errors?.['max']">El semestre no puede exceder 12.</div>
-              </div>
             </div>
-
             <!-- Botón Guardar -->
             <button class="btn btn-success btn-block" [disabled]="!ovaForm.form.valid">Guardar</button>
           </form>
@@ -108,8 +83,7 @@
     </div>
   </div>
 </div>
-
-<!-- Scripts necesarios para Bootstrap, Popper y jQuery -->
+<!-- Scripts necesarios para Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
