@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditarOvasComponent } from './editar-ovas.component';
+import { EditarOvaComponent } from './editar-ovas.component';
 
-describe('EditarOvasComponent', () => {
-  let component: EditarOvasComponent;
-  let fixture: ComponentFixture<EditarOvasComponent>;
+describe('EditarOvaComponent', () => {
+  let component: EditarOvaComponent;
+  let fixture: ComponentFixture<EditarOvaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EditarOvasComponent]
+      declarations: [EditarOvaComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditarOvasComponent);
+    fixture = TestBed.createComponent(EditarOvaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

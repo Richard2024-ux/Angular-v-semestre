@@ -1,16 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registro de OVA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
 <table class="table">
   <thead>
   <tr>
-    <th scope="col">Codigo</th>
-    <th scope="col">Programa</th>
-    <th scope="col">OVA</th>
+    <th scope="col">id</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Intensidad</th>
+    <th scope="col">Semestre</th>
   </tr>
   </thead>
   <tbody>
   <tr>
     <td>{{ova.id}}</td>
-    <td>{{ova.programa}}</td>
-    <td>{{ova.ova}}</td>
+    <td>{{ova.nombre}}</td>
+    <td>{{ova.intensidad}}</td>
+    <td>{{ova.semestre}}</td>
   </tr>
   </tbody>
 </table>

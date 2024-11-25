@@ -17,16 +17,17 @@ export class OvaService {
     return this.httpClient.get<Ova[]>(`${this.baseURL}`);
   }
 
-  //este metodo nos sirve para registrar un Ova
-  registrarOva(Ova: Ova): Observable<Object> {
+  //este metodo nos sirve para crear un Ova
+  crearOva(Ova: Ova): Observable<Object> {
     return this.httpClient.post(`${this.baseURL}`, Ova);
   }
 
   //este metodo sirve para actualizar el Ova
-  actualizarOva(id: number, Ova: Ova): Observable<Object> {
+  editarOva(id: number, Ova: Ova): Observable<Object> {
     return this.httpClient.put(`${this.baseURL}/${id}`, Ova);
   }
 
+  //cambiar por detalle//
   //este metodo sirve para obtener o buscar un Ova
   obtenerOvaPorId(id: number): Observable<Ova> {
     return this.httpClient.get<Ova>(`${this.baseURL}/${id}`);

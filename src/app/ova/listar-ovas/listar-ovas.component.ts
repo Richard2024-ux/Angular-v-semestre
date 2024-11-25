@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ListarOvasComponent {
 
-  ovas: Ova[];
+  ova: Ova[];
 
   constructor(private ovaService: OvaService, private router: Router) { }
 
